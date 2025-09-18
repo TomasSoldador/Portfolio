@@ -4,23 +4,5 @@
     "tag": "Web",
     "img": "/images/projects/project-1.jpg",
     "href": "#p1"
-  },
-  {
-    "title": "Project Two",
-    "tag": "Web",
-    "img": "/images/projects/project-2.jpg",
-    "href": "#p2"
-  },
-  {
-    "title": "Project Three",
-    "tag": "Mobile",
-    "img": "/images/projects/project-3.jpg",
-    "href": "#p3"
-  },
-  {
-    "title": "Project Four",
-    "tag": "API",
-    "img": "/images/projects/project-4.jpg",
-    "href": "#p4"
   }
 ]
