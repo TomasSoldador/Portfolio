@@ -2,6 +2,7 @@
 
 
 import React from 'react'
+import Image from "next/image"
 
 const calculateYears = (start: Date) => {
   const now = new Date()
@@ -50,32 +51,40 @@ export default function AboutMe() {
 
         {/* Image grid */}
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <img
+          <Image
             alt="code"
             src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop"
+            width={1400}
+            height={933}
             className="h-full w-full rounded-3xl object-cover lg:row-span-2"
           />
-          <img
+          <Image
             alt="people"
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop"
+            width={1400}
+            height={933}
             className="h-full w-full rounded-3xl object-cover lg:row-span-2"
           />
           <div className="grid gap-6">
-            <img
+            <Image
               alt="desk"
               src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop"
+              width={1400}
+              height={933}
               className="h-70 w-full rounded-3xl object-cover"
             />
-            <img
+            <Image
               alt="monitor"
               src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop"
+              width={1400}
+              height={933}
               className="h-70 w-full rounded-3xl object-cover"
             />
           </div>
         </div>
 
         <div className="mt-16 rounded-b-4xl bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400 py-20 text-center">
-          <h2 className="text-8xl font-extrabold text-white">Let's Connect</h2>
+          <h2 className="text-8xl font-extrabold text-white">Let&apos;s Connect</h2>
           <a
             href="#cv"
             className="mt-8 inline-block rounded-full bg-black px-9 py-4 text-lg font-semibold text-white shadow hover:bg-slate-700 dark:hover:bg-slate-200 dark:hover:text-black"

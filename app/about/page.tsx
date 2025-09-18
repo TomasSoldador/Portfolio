@@ -3,7 +3,8 @@
 import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import React from 'react'
-import { FaFacebookF, FaInstagram, FaTwitter, FaGithub, FaLinkedinIn, FaGlobe } from 'react-icons/fa'
+import { FaInstagram, FaGithub, FaLinkedinIn, FaGlobe } from 'react-icons/fa'
+import Image from "next/image"
 
 const calculateYears = (start: Date) => {
   const now = new Date()
@@ -67,7 +68,7 @@ export default function AboutPage() {
           </h1>
           <div className="flex flex-col gap-5">
             <p className="text-sm sm:text-base leading-7 text-slate-700 dark:text-slate-300">
-              I'm a full‑stack developer specialized in React Native, Next.js, Node.js, TypeScript, Python, and IoT integrations with ESP32. I build secure, scalable apps and systems that connect mobile, backend, and hardware.
+              I&apos;m a full‑stack developer specialized in React Native, Next.js, Node.js, TypeScript, Python, and IoT integrations with ESP32. I build secure, scalable apps and systems that connect mobile, backend, and hardware.
             </p>
             <div className="flex items-center gap-3">
               <a className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-orange-400 text-white" href={socialLinks.github}><FaGithub size={14} /></a>
@@ -79,26 +80,34 @@ export default function AboutPage() {
 
         {/* IMAGES: two tall images + right column split in two */}
         <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop"
-            className="w-full rounded-3xl object-cover h-56 sm:h-72 md:h-full lg:row-span-2"
             alt="work1"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop"
+            width={1400}
+            height={900}
             className="w-full rounded-3xl object-cover h-56 sm:h-72 md:h-full lg:row-span-2"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop"
             alt="work2"
+            width={1400}
+            height={900}
+            className="w-full rounded-3xl object-cover h-56 sm:h-72 md:h-full lg:row-span-2"
           />
           <div className="grid gap-4 sm:gap-6">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop"
-              className="h-40 sm:h-56 md:h-64 w-full rounded-3xl object-cover"
               alt="work3"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1522199670076-2852f80289c7?q=80&w=1400&auto=format&fit=crop"
+              width={1400}
+              height={900}
               className="h-40 sm:h-56 md:h-64 w-full rounded-3xl object-cover"
+            />
+            <Image
+              src="https://images.unsplash.com/photo-1522199670076-2852f80289c7?q=80&w=1400&auto=format&fit=crop"
               alt="work4"
+              width={1400}
+              height={900}
+              className="h-40 sm:h-56 md:h-64 w-full rounded-3xl object-cover"
             />
           </div>
         </div>
@@ -151,7 +160,7 @@ export default function AboutPage() {
 
         {/* Companies */}
         <div className="mt-16 text-center">
-          <h2 className="text-4xl font-extrabold"><span className="bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">Companies</span> I've Worked with</h2>
+          <h2 className="text-4xl font-extrabold"><span className="bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">Companies</span> I&apos;ve Worked with</h2>
           <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 rounded-2xl bg-slate-100 dark:bg-slate-800 p-6 sm:p-8">
             <div className="flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 py-4 text-sm text-slate-600 dark:text-slate-300 shadow-sm">Visionants</div>
             <div className="flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 py-4 text-sm text-slate-600 dark:text-slate-300 shadow-sm">ASP Solucions (Italy)</div>
@@ -161,9 +170,11 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <img
+          <Image
             src="https://github.com/TomasSoldador.png"
             alt="portrait"
+            width={600}
+            height={600}
             className="w-full h-120 sm:h-80 md:h-[420px] lg:h-[460px] rounded-2xl object-cover"
           />
           <div className="rounded-2xl bg-[#171717] p-6 sm:p-8 text-white shadow-xl">
@@ -171,7 +182,7 @@ export default function AboutPage() {
               <span className="bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">Follow me</span>
             </h3>
             <p className="mt-3 text-sm text-slate-300 dark:text-slate-400">
-              I'm Tomás Soldador, a full‑stack developer passionate about building apps, IoT systems, and exploring AI integrations.
+              I&apos;m Tomás Soldador, a full‑stack developer passionate about building apps, IoT systems, and exploring AI integrations.
             </p>
             <hr className="my-5 border-slate-700" />
             <div className="flex flex-wrap items-center gap-4 text-white/90">

@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from "next/image"
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 
@@ -29,11 +30,12 @@ const Section = ({
       </a>
     </div>
     <div>
-      <img
+      <Image
         src={img}
         alt={title}
+        width={800}
+        height={400}
         className="w-full h-72 md:h-96 rounded-3xl object-cover shadow"
-        loading="lazy"
       />
     </div>
   </div>

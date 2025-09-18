@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 export default function Navbar() {

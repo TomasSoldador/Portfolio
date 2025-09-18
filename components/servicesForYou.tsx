@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function ServicesForYou() {
   return (
     <section className="dark:bg-black dark:text-white mb-16">
@@ -51,9 +52,11 @@ export default function ServicesForYou() {
               <span className="text-2xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
                 {item.title}
               </span>
-              <img
+              <Image
                 src={item.img}
                 alt={item.title}
+                width={288}
+                height={176}
                 className="pointer-events-none absolute right-32 hidden lg:block top-1/2 -translate-y-1/2 w-56 md:w-72 h-36 md:h-44 object-cover rounded-xl shadow-xl opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition"
               />
               <svg

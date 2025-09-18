@@ -18,8 +18,6 @@ export async function POST(req: Request) {
 
   const { name, email, message, budget } = parsed.data
   const transporter = getTransporter()
-  const from = process.env.CONTACT_FROM!
-  const to = process.env.CONTACT_TO!
 
   await transporter.sendMail({
     from: email,

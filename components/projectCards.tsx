@@ -1,5 +1,6 @@
 import React from "react";
 import projects from "@/data/projects.json";
+import Image from "next/image";
 
 export default function ProjectCards() {
   return (
@@ -29,9 +30,11 @@ export default function ProjectCards() {
               className="group block rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)]"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <img
+                <Image
                   src={p.img}
                   alt={p.title}
+                  width={800}
+                  height={500}
                   className="h-full w-full object-cover transition group-hover:scale-[1.03]"
                 />
               </div>

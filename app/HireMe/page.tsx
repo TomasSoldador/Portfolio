@@ -57,7 +57,7 @@ function FAQSection() {
           {/* Left */}
           <div className="flex flex-col items-start gap-5 mt-12">
             <h2 className="text-6xl font-extrabold tracking-tight">
-              <span className="bg-gradient-to-r from-fuchsia-500 via-orange-400 to-amber-400 bg-clip-text text-transparent">FAQ's</span>
+              <span className="bg-gradient-to-r from-fuchsia-500 via-orange-400 to-amber-400 bg-clip-text text-transparent">FAQ&apos;s</span>
             </h2>
             <p className="text-lg text-black/70 dark:text-slate-400 mb-5">Answers to common questions.</p>
             <a
