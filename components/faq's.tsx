@@ -1,6 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useReveal } from '@/hooks/useReveal'
+
+const REVEAL = 'reveal opacity-0 translate-y-4 transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform will-change-opacity motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none'
+const withDelay = (ms: number) => `${REVEAL} [transition-delay:${ms}ms]`
 
 const faqs = [
   {
@@ -48,19 +52,23 @@ const faqs = [
 export default function FAQs() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
+  useReveal({ threshold: 0.22, rootMargin: '0px 0px -10% 0px' })
+
   return (
     <section id="faqs" className="w-full py-16">
       <div className="mx-auto w-full max-w-6xl rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm px-6 py-12 md:px-12">
         <div className="grid items-start gap-10 grid-cols-1 md:grid-cols-[340px_1fr]">
           {/* Left */}
           <div className="flex flex-col items-start gap-5 mt-12">
-            <h2 className="text-6xl font-extrabold tracking-tight">
+            <h2 className={`${REVEAL} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight`}>
               <span className="bg-gradient-to-r from-fuchsia-500 via-orange-400 to-amber-400 bg-clip-text text-transparent">FAQ&apos;s</span>
             </h2>
-            <p className="text-lg text-black/70 dark:text-slate-400 mb-5">Answers to common questions.</p>
+            <p className={`${withDelay(120)} text-sm sm:text-base md:text-lg text-black/70 dark:text-slate-400 mb-5`}>
+              Answers to common questions.
+            </p>
             <a
               href="/HireMe"
-              className="rounded-full px-12 py-4 text-lg font-semibold text-white bg-gradient-to-r from-fuchsia-500 to-orange-400 shadow hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+              className={`${withDelay(240)} rounded-full px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-fuchsia-500 to-orange-400 shadow hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400`}
             >
               Contact Me
             </a>
@@ -71,17 +79,17 @@ export default function FAQs() {
             {faqs.map((item, idx) => {
               const open = openIndex === idx
               return (
-                <div key={idx}>
+                <div key={idx} className={REVEAL} style={{ transitionDelay: `${idx * 100 + 100}ms` }}>
                   <button
                     type="button"
                     aria-expanded={open}
                     aria-controls={`faq-panel-${idx}`}
                     onClick={() => setOpenIndex(open ? null : idx)}
-                    className="flex w-full items-center justify-between gap-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-orange-400 dark:focus-visible:ring-offset-slate-900 rounded-xl"
                   >
-                    <span className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{item.q}</span>
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-slate-900 dark:text-slate-100">{item.q}</span>
                     <svg
-                      className={`h-12 w-12 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+                      className={`h-6 sm:h-8 md:h-10 lg:h-12 w-6 sm:w-8 md:w-10 lg:w-12 shrink-0 transition-transform motion-reduce:transition-none ${open ? 'rotate-180' : ''}`}
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
@@ -95,7 +103,7 @@ export default function FAQs() {
                     aria-hidden={!open}
                     className={`${open ? 'block' : 'hidden'}`}
                   >
-                    <div className="pb-5 pr-8 text-slate-700 dark:text-slate-300">
+                    <div className="pb-3 sm:pb-4 md:pb-5 pr-2 sm:pr-4 md:pr-8 text-sm sm:text-base md:text-lg text-slate-700 dark:text-slate-300">
                       {item.a}
                     </div>
                   </div>

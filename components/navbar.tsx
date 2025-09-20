@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [revealed, setRevealed] = useState(false)
   const pathname = usePathname()
 
   // Close mobile menu when resizing to desktop and on route change
@@ -15,6 +16,10 @@ export default function Navbar() {
     }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  useEffect(() => {
+    setRevealed(true)
   }, [])
 
   useEffect(() => {
@@ -49,12 +54,19 @@ export default function Navbar() {
   const toggle = () => setOpen(v => !v)
   const closeOnEsc = (e: React.KeyboardEvent<HTMLDivElement>) => { if (e.key === 'Escape') setOpen(false) }
 
+  const baseHeader = 'supports-[backdrop-filter]:bg-white/80 supports-[backdrop-filter]:dark:bg-slate-900/80 bg-white dark:bg-slate-900 backdrop-blur border-b border-slate-200 dark:border-slate-800'
+  const motionBase = 'motion-safe:transition-all motion-safe:duration-900 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none'
+  const hiddenState = 'motion-safe:-translate-y-2 motion-safe:opacity-0 opacity-100'
+  const shownState = 'motion-safe:translate-y-0 motion-safe:opacity-100'
+  const positionCls = 'sticky top-0 z-50'
+  const headerCls = `${baseHeader} ${positionCls} ${motionBase} ${revealed ? shownState : hiddenState}`
+
   return (
     <>
       {/* Skip link */}
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded focus:bg-pink-600 focus:px-3 focus:py-2 focus:text-white">Skip to content</a>
 
-      <header className="supports-[backdrop-filter]:bg-white/80 supports-[backdrop-filter]:dark:bg-slate-900/80 bg-white dark:bg-slate-900 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+      <header className={headerCls}>
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 md:py-4 text-slate-900 dark:text-slate-100">
           {/* Brand + desktop nav */}
           <div className="flex items-center gap-6 md:gap-10 lg:gap-16 min-w-0">

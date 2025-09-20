@@ -1,20 +1,25 @@
 import Image from "next/image";
+import { useReveal } from '@/hooks/useReveal'
+
+const REVEAL = 'reveal opacity-0 translate-y-4 transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform will-change-opacity motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none'
+const withDelay = (ms: number) => `${REVEAL} [transition-delay:${ms}ms]`
 export default function ServicesForYou() {
+  useReveal({ threshold: 0.35, rootMargin: '0px 0px -15% 0px' })
   return (
-    <section className="dark:bg-black dark:text-white mb-16">
+    <section className={`${REVEAL} dark:bg-black dark:text-white mb-16`} data-animate>
       <div className="container mx-auto px-6 md:px-20 lg:px-56">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
           <div>
             <div className="mt-40">
-              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">Services</h2>
+              <h2 className={`${REVEAL} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100`}>Services</h2>
             </div>
-            <div className="flex items-center ml-80 mt-5 gap-2">
+            <div className="flex items-center mt-5 gap-2 sm:ml-20 md:ml-40 lg:ml-80">
               <span className=" w-20 h-0.5 bg-black dark:bg-white"></span>
-              <h3 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-slate-100">For</h3>
+              <h3 className={`${withDelay(120)} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-slate-100`}>For</h3>
             </div>
             <div className="mt-5">
-              <span className="block text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-orange-400 bg-clip-text text-transparent">
+              <span className={`${withDelay(220)} block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-pink-500 via-fuchsia-500 to-orange-400 bg-clip-text text-transparent`}>
                 You.
               </span>
             </div>
@@ -23,13 +28,13 @@ export default function ServicesForYou() {
           <div className="flex items-center gap-4">
             <a
               href="/HireMe"
-              className="inline-flex items-center justify-center rounded-full px-8 md:px-20 h-12 md:h-16 text-base md:text-lg font-semibold text-black dark:text-white bg-gradient-to-r from-fuchsia-600 to-orange-400 hover:scale-105 transition"
+              className={`${withDelay(300)} inline-flex items-center justify-center rounded-full px-6 sm:px-8 md:px-12 lg:px-20 h-10 sm:h-12 md:h-14 lg:h-16 text-sm sm:text-base md:text-lg font-semibold text-black dark:text-white bg-gradient-to-r from-fuchsia-600 to-orange-400 hover:scale-105 transition`}
             >
               Hire Me
             </a>
             <a
               href="/myServices"
-              className="inline-flex items-center justify-center rounded-full px-8 md:px-20 h-12 md:h-16 text-sm md:text-base font-semibold border border-black/20 dark:border-white/20 text-slate-900 dark:text-slate-100 hover:bg-black/5 dark:hover:bg-white/5 transition"
+              className={`${withDelay(400)} inline-flex items-center justify-center rounded-full px-6 sm:px-8 md:px-12 lg:px-20 h-10 sm:h-12 md:h-14 lg:h-16 text-xs sm:text-sm md:text-base font-semibold border border-black/20 dark:border-white/20 text-slate-900 dark:text-slate-100 hover:bg-black/5 dark:hover:bg-white/5 transition`}
             >
               See More
             </a>
@@ -47,9 +52,9 @@ export default function ServicesForYou() {
             <a
               key={item.title}
               href={item.href}
-              className="group relative isolate overflow-visible flex items-center justify-between py-8 md:py-10 rounded-lg px-6 transition bg-transparent hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-400"
+              className={`${REVEAL} group relative isolate overflow-visible flex items-center justify-between py-8 md:py-10 rounded-lg px-6 transition bg-transparent hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-400`}
             >
-              <span className="text-2xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
                 {item.title}
               </span>
               <Image

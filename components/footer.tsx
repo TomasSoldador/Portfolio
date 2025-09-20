@@ -4,7 +4,14 @@ import React from 'react'
 import Link from 'next/link'
 import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa'
 
+import { useReveal } from '@/hooks/useReveal'
+
+const REVEAL = 'reveal opacity-0 translate-y-4 transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform will-change-opacity motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none'
+const withDelay = (ms: number) => `${REVEAL} [transition-delay:${ms}ms]`
+
 export default function Footer() {
+  useReveal({ threshold: 0.2, rootMargin: '0px 0px -10% 0px' })
+
   const year = new Date().getFullYear()
 
   const socialLink = (
@@ -31,8 +38,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:items-start">
           {/* Brand */}
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
-            <h3 className="text-xl sm:text-2xl font-bold">Tomás Portfolio</h3>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+            <h3 className={`${REVEAL} text-lg sm:text-xl md:text-2xl font-bold`}>Tomás Portfolio</h3>
+            <p className={`${withDelay(120)} mt-2 text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400`}>
               © {year} Designed by Tomás Soldador
             </p>
           </div>
@@ -42,30 +49,30 @@ export default function Footer() {
             aria-label="Footer"
             className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[15px] font-medium text-slate-700 dark:text-slate-300 md:justify-center"
           >
-            <Link href="/" className="hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1">
+            <Link href="/" className={`${withDelay(0)} hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1`}>
               Home
             </Link>
-            <Link href="/myServices" className="hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1">
+            <Link href="/myServices" className={`${withDelay(100)} hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1`}>
               My Services
             </Link>
-            <Link href="/about" className="hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1">
+            <Link href="/about" className={`${withDelay(200)} hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1`}>
               About
             </Link>
-            <Link href="/HireMe" className="hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1">
+            <Link href="/HireMe" className={`${withDelay(300)} hover:text-slate-900 dark:hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded px-1 py-1`}>
               Contact
             </Link>
           </nav>
 
           {/* Socials + back to top */}
           <div className="flex flex-col items-center justify-center gap-4 md:items-end">
-            <div className="flex gap-3">
+            <div className={`${REVEAL} flex gap-3`}>
               {socialLink('https://github.com/zgravityy', 'GitHub', FaGithub)}
               {socialLink('https://instagram.com/teu_instagram', 'Instagram', FaInstagram)}
               {socialLink('https://linkedin.com/in/teu_linkedin', 'LinkedIn', FaLinkedin)}
             </div>
             <a
               href="#top"
-              className="text-sm text-slate-600 underline underline-offset-4 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 dark:text-slate-400 dark:hover:text-slate-100 rounded px-1 py-1"
+              className={`${withDelay(200)} text-xs sm:text-sm text-slate-600 underline underline-offset-4 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 dark:text-slate-400 dark:hover:text-slate-100 rounded px-1 py-1`}
             >
               Back to top
             </a>
@@ -74,7 +81,7 @@ export default function Footer() {
 
         {/* Bottom separator */}
         <div className="mt-10 border-t border-slate-200 dark:border-slate-800 pt-6 text-center">
-          <p className="text-xs text-slate-500 dark:text-slate-400">
+          <p className={`${REVEAL} text-[10px] sm:text-xs md:text-sm text-slate-500 dark:text-slate-400`}>
             Built with Next.js · Optimized for mobile, tablet and desktop
           </p>
         </div>

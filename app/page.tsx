@@ -1,3 +1,5 @@
+'use client'
+
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar"
 import ProjectCards from "@/components/projectCards";
@@ -9,13 +11,15 @@ import Footer from "@/components/footer";
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <ServicesForYou />
-      <ProjectCards />
-      <FAQs />
-      <AboutMe />
-      <Footer />
+      <div>
+        <Navbar />
+        <Hero />
+        <ServicesForYou />
+        <ProjectCards />
+        <FAQs />
+        <AboutMe />
+        <Footer />
+      </div>
     </>
   );
 }
