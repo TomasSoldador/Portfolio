@@ -20,7 +20,7 @@ export default function Hero() {
         className={`${withDelay(100)} w-28 h-28 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-60 lg:h-60 rounded-full object-cover bg-white mt-10 sm:mt-14 md:mt-20`}
       />
       <h1 className={`${withDelay(300)} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold w-11/12 sm:w-10/12 md:w-9/12 lg:w-6/12 mt-8 sm:mt-12 md:mt-16 text-slate-900 dark:text-slate-100 px-4 sm:px-6`}>
-        Hello, I'm Tomás, Software
+        Hello, I&apos;m Tomás, Software
       </h1>
       <p className={`${withDelay(500)} text-base sm:text-lg text-gray-600 dark:text-slate-300 mt-6 sm:mt-10 md:mt-16 max-w-2xl px-4 sm:px-6`}>
         Crafting elegant solutions with code, one project at a time.
