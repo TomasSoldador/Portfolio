@@ -60,12 +60,12 @@ export const SKILLS_DATA = [
 
 export const PROJECTS_DATA = [
   {
-    id: "proj_1",
-    title: "E-Commerce Dashboard",
+    id: "proj_iot",
+    title: "IoT Dashboard - Smart Home",
     description:
-      "A comprehensive admin dashboard for managing products, orders, and analytics. Features real-time data visualization and role-based access control.",
-    tech_stack: ["Next.js", "TypeScript", "Prisma", "TanStack Query"],
-    image: "/project-1.jpg", // Placeholder
+      "Real-time Smart Home Controller handling MQTT data streams from ESP32 devices. Features live temperature graphing, remote switch control, and WebSocket latency <10ms.",
+    tech_stack: ["Next.js", "WebSockets", "MQTT", "Recharts", "Tailwind"],
+    image: "/project-iot.jpg", 
     links: {
       demo: "https://example.com",
       github: "https://github.com/example/repo",

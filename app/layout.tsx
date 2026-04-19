@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={clsx(inter.variable, "antialiased bg-background text-foreground")}>
+        <div className="bg-noise" />
         {children}
       </body>
     </html>

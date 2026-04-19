@@ -16,7 +16,7 @@ export function Projects() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS_DATA.map((project) => (
+          {PROJECTS_DATA.map((project, index) => (
             <ProjectCard
               key={project.id}
               title={project.title}
@@ -24,6 +24,7 @@ export function Projects() {
               tags={project.tech_stack}
               image={project.image}
               links={project.links}
+              index={index}
             />
           ))}
         </div>
