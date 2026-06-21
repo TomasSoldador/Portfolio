@@ -1,34 +1,33 @@
-import { Section } from "@/components/ui/Section";
-import { ProjectCard } from "@/components/ProjectCard";
+"use client";
+
+import { motion } from "framer-motion";
 import { PROJECTS_DATA } from "@/lib/data";
+import { ProjectCard } from "@/components/ui/ProjectCard";
 
-export function Projects() {
+export function ProjectsContent() {
   return (
-    <Section id="projects" className="py-24">
-      <div className="space-y-12">
-        <div className="text-center space-y-4">
-           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Featured <span className="text-accent">Projects</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A selection of projects that demonstrate my ability to solve complex problems.
-          </p>
-        </div>
+    <div className="mx-auto w-full max-w-3xl">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-10 text-center"
+      >
+        <span className="font-mono text-xs uppercase tracking-widest text-primary">
+          {"// ls projetos/"}
+        </span>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Projetos</h2>
+        <p className="mx-auto mt-3 max-w-xl text-pretty text-sm text-muted-foreground">
+          Produtos reais que construí de ponta a ponta — do frontend ao hardware.
+        </p>
+      </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS_DATA.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              tags={project.tech_stack}
-              image={project.image}
-              links={project.links}
-              index={index}
-            />
-          ))}
-        </div>
+      <div className="flex flex-col gap-8">
+        {PROJECTS_DATA.map((project, index) => (
+          <ProjectCard key={project.id} project={project} index={index} />
+        ))}
       </div>
-    </Section>
+    </div>
   );
 }
