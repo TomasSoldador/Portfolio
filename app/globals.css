@@ -65,13 +65,13 @@
   --background: #f4f6fb;
   --foreground: #0b1220;
 
-  --card: #ffffff;
+  --card: #f7f9fc;
   --card-foreground: #0b1220;
 
   --primary: #0e7490;
   --primary-foreground: #ffffff;
 
-  --secondary: #e8edf6;
+  --secondary: #e3e9f4;
   --secondary-foreground: #0b1220;
 
   --accent: #0284c7;
@@ -79,10 +79,10 @@
 
   --neon: #0891b2;
 
-  --muted: #e8edf6;
-  --muted-foreground: #51607c;
+  --muted: #e3e9f4;
+  --muted-foreground: #4a596f;
 
-  --border: #d4ddec;
+  --border: #c3cfe2;
 }
 
 @layer base {
@@ -113,6 +113,14 @@
   .crt-screen .text-glow {
     text-shadow: 0 0 8px color-mix(in srgb, var(--neon) 70%, transparent),
       0 0 24px color-mix(in srgb, var(--neon) 40%, transparent);
+  }
+
+  /* Halo adaptativo: lifta o texto que flutua por cima da cena 3D (o monitor é
+     escuro, a cena clara). Usa a cor de fundo do tema como "outline" suave, por
+     isso separa o texto do que estiver atrás, em ambos os temas. */
+  .legible {
+    text-shadow: 0 0 2px var(--background), 0 0 10px var(--background),
+      0 1px 12px var(--background);
   }
 
   .neon-border {

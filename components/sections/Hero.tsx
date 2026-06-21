@@ -25,7 +25,7 @@ export function HeroContent() {
       <motion.h1
         {...fade}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-balance text-4xl font-bold tracking-tight sm:text-6xl"
+        className="legible text-balance text-4xl font-bold tracking-tight sm:text-6xl"
       >
         {PROFILE.name}
       </motion.h1>
@@ -33,7 +33,7 @@ export function HeroContent() {
       <motion.p
         {...fade}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-2 text-xl font-medium text-primary sm:text-2xl"
+        className="legible mt-2 text-xl font-medium text-primary sm:text-2xl"
       >
         {PROFILE.role}
       </motion.p>
@@ -41,7 +41,7 @@ export function HeroContent() {
       <motion.p
         {...fade}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="mt-4 text-pretty text-base text-muted-foreground sm:text-lg"
+        className="legible mt-4 text-pretty text-base text-muted-foreground sm:text-lg"
       >
         {PROFILE.subtitle}
       </motion.p>
@@ -72,7 +72,7 @@ export function HeroContent() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="mt-12 inline-flex items-center gap-2 text-xs text-muted-foreground"
+        className="legible mt-12 inline-flex items-center gap-2 text-xs text-muted-foreground"
       >
         <ArrowDown size={14} className="animate-bounce" /> faz scroll para explorar
       </motion.div>
