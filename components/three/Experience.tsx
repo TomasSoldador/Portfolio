@@ -2,16 +2,15 @@
 
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { ScrollControls } from "@react-three/drei";
 import { Scene } from "./Scene";
 import { SceneLoader } from "./SceneLoader";
 
 /**
- * Experiência 3D completa: <Canvas> fixo em ecrã inteiro com <ScrollControls>
- * a controlar o scroll. O conteúdo HTML vive dentro (ver Scene -> Scroll html).
+ * Experiência 3D: <Canvas> fixo em ecrã inteiro, usado como FUNDO (atrás do
+ * conteúdo HTML). Não captura eventos (pointer-events: none) para não bloquear
+ * cliques/scroll na página; a paralaxe do rato é lida via window (ScrollDriver).
  *
- * `quality` permite degradar a cena em dispositivos mais fracos.
- * `dpr` limita o pixel ratio (importante em mobile).
+ * `quality` degrada a cena em dispositivos fracos; `dpr` limita o pixel ratio.
  */
 export default function Experience({
   quality,
@@ -23,18 +22,16 @@ export default function Experience({
   return (
     <>
       <SceneLoader />
-      <div className="fixed inset-0 h-[100dvh] w-full">
+      <div className="pointer-events-none fixed inset-0 z-0 h-[100dvh] w-full">
         <Canvas
           dpr={dpr}
           gl={{ antialias: quality === "high", powerPreference: "high-performance" }}
-          camera={{ position: [0, 0.2, 6], fov: 42 }}
+          camera={{ position: [1.4, 0.3, 6.2], fov: 42 }}
         >
           <color attach="background" args={["#05070d"]} />
-          <fog attach="fog" args={["#05070d", 9, 22]} />
+          <fog attach="fog" args={["#05070d", 10, 24]} />
           <Suspense fallback={null}>
-            <ScrollControls pages={7.2} damping={0.28}>
-              <Scene quality={quality} />
-            </ScrollControls>
+            <Scene quality={quality} />
           </Suspense>
         </Canvas>
       </div>

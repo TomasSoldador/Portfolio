@@ -6,8 +6,8 @@ import { SmartLink } from "@/components/ui/SmartLink";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 /**
- * Navbar fixa, renderizada FORA do <Canvas>. Os links usam SmartLink para
- * fazer scroll quer na experiência 3D (ScrollControls) quer na versão estática.
+ * Navbar fixa, por cima do conteúdo. Os links navegam por âncora (#id) com
+ * scroll suave nativo, igual nas versões 3D e estática.
  */
 export function Navbar() {
   return (

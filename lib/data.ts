@@ -23,9 +23,7 @@ export const PROFILE = {
 } as const;
 
 /* -------------------------------------------------------------------------- */
-/*  Navegação                                                                  */
-/*  `offset` = posição aproximada (0..1) usada para fazer scroll suave na      */
-/*  experiência 3D (ScrollControls).                                           */
+/*  Navegação (âncoras para as secções)                                        */
 /* -------------------------------------------------------------------------- */
 
 export const NAVIGATION_LINKS = [

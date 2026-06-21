@@ -2,9 +2,10 @@
 
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { RoundedBox, useScroll } from "@react-three/drei";
+import { RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 import { ScreenContent } from "./ScreenContent";
+import { scrollState } from "@/lib/r3fScroll";
 
 /**
  * Monitor/computador retro construído proceduralmente (sem modelos externos,
@@ -19,17 +20,15 @@ import { ScreenContent } from "./ScreenContent";
  */
 export function RetroComputer({ quality }: { quality: "high" | "low" }) {
   const group = useRef<THREE.Group>(null);
-  const scroll = useScroll();
 
   useFrame((state, delta) => {
     if (!group.current) return;
-    const offset = scroll.offset;
+    const offset = scrollState.progress;
     const t = state.clock.elapsedTime;
 
     // Rotação alvo: roda suavemente ao longo do scroll + balanço idle.
-    const targetRotY = Math.sin(offset * Math.PI * 1.5) * 0.35 + Math.sin(t * 0.4) * 0.04;
-    const targetRotX = -0.04 + Math.cos(offset * Math.PI) * 0.06 + Math.sin(t * 0.5) * 0.02;
-    // Pequena flutuação vertical.
+    const targetRotY = Math.sin(offset * Math.PI * 1.4) * 0.3 + Math.sin(t * 0.4) * 0.04;
+    const targetRotX = -0.03 + Math.cos(offset * Math.PI) * 0.05 + Math.sin(t * 0.5) * 0.02;
     const targetY = Math.sin(t * 0.8) * 0.05;
 
     // Amortecimento (lerp dependente do delta) para movimento suave.
