@@ -1,102 +1,47 @@
 "use client";
 
-import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
-import { sendEmail } from "@/actions/sendEmail";
-// import { useFormStatus } from "react-dom"; // Available in next 14+ / React 18+ (canary). If not available, we use standard state.
-// We'll use standard hook for status in this client component for broader compatibility if exact react version is unknown, but since user asked for server actions, we'll try to use the hook if possible or manual transition.
-import { useState, useTransition } from "react";
+import { motion } from "framer-motion";
+import { SOCIAL_LINKS } from "@/lib/data";
+import { ContactForm } from "@/components/ContactForm";
 
-export function Contact() {
-  const [pending, startTransition] = useTransition();
-  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
-
-  const handleSubmit = async (formData: FormData) => {
-    startTransition(async () => {
-       const res = await sendEmail(null, formData);
-       setResult(res);
-    });
-  };
-
+export function ContactContent() {
   return (
-    <Section id="contact" className="max-w-4xl">
-      <div className="space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Let&apos;s Work <span className="text-accent">Together</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or just want to say hi? I&apos;m always open to new opportunities.
-          </p>
-        </div>
+    <div className="mx-auto w-full max-w-2xl">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-8 text-center"
+      >
+        <span className="font-mono text-xs uppercase tracking-widest text-primary">
+          {"// contacto"}
+        </span>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+          Vamos construir algo?
+        </h2>
+        <p className="mx-auto mt-3 max-w-md text-pretty text-sm text-muted-foreground">
+          Tens um projeto em mente ou queres só dizer olá? Escreve-me — respondo sempre.
+        </p>
+      </motion.div>
 
-        <div className="bg-secondary/20 border border-border rounded-2xl p-8 md:p-12">
-          {result?.success ? (
-            <div className="text-center py-12 space-y-4 animate-in fade-in zoom-in duration-500">
-               <h3 className="text-2xl font-bold text-green-500">Message Sent!</h3>
-               <p className="text-muted-foreground">Thanks for reaching out. I&apos;ll get back to you soon.</p>
-               <Button variant="outline" onClick={() => setResult(null)}>Send another</Button>
-            </div>
-          ) : (
-             <form action={handleSubmit} className="space-y-6" suppressHydrationWarning>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    placeholder="John Doe"
-                    suppressHydrationWarning
-                    className="w-full px-4 py-3 rounded-md bg-background border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    placeholder="john@example.com"
-                    suppressHydrationWarning
-                    className="w-full px-4 py-3 rounded-md bg-background border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">Message</label>
-                <textarea
-                  name="message"
-                  id="message"
-                  required
-                  rows={4}
-                  placeholder="Tell me about your project..."
-                  suppressHydrationWarning
-                  className="w-full px-4 py-3 rounded-md bg-background border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all resize-none"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full md:w-auto min-w-[150px]"
-                disabled={pending}
-                suppressHydrationWarning
-              >
-                {pending ? "Sending..." : "Send Message"}
-              </Button>
-              
-              {result && !result.success && (
-                <p className="text-red-500 text-sm mt-2">{result.message}</p>
-              )}
-            </form>
-          )}
-         
-        </div>
+      <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur sm:p-8">
+        <ContactForm />
       </div>
-    </Section>
+
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+        {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+          <a
+            key={label}
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+          >
+            <Icon size={16} /> {label}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }

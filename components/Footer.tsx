@@ -1,33 +1,28 @@
-import { PROFILE } from "@/lib/data";
-import { Github, Linkedin } from "lucide-react";
+import { PROFILE, SOCIAL_LINKS } from "@/lib/data";
 
-export function Footer() {
+export function FooterContent() {
   return (
-    <footer className="border-t border-border py-12 bg-background">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-sm text-muted-foreground text-center md:text-left">
-          &copy; {new Date().getFullYear()} {PROFILE.name}. Built with <span className="text-foreground font-medium">Next.js</span> and <span className="text-foreground font-medium">Tailwind CSS</span>.
-        </p>
-        
-        <div className="flex items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-4 text-center">
+      <div className="flex items-center gap-4">
+        {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
           <a
-            href={PROFILE.socials.github}
-            target="_blank"
+            key={label}
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={label}
+            className="text-muted-foreground transition-colors hover:text-primary"
           >
-            <Github className="w-5 h-5" />
+            <Icon className="h-5 w-5" />
           </a>
-          <a
-            href={PROFILE.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-        </div>
+        ))}
       </div>
-    </footer>
+      <p className="font-mono text-xs text-muted-foreground">
+        Feito com Next.js + Three.js
+      </p>
+      <p className="text-xs text-muted-foreground/70">
+        &copy; {new Date().getFullYear()} {PROFILE.name}
+      </p>
+    </div>
   );
 }
