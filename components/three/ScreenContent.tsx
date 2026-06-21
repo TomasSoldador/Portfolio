@@ -34,7 +34,7 @@ export function ScreenContent() {
   return (
     <Html
       transform
-      position={[0, 0.05, 0.07]}
+      position={[0, 0.02, 0.085]}
       distanceFactor={1.6}
       // não captura eventos -> o scroll/cliques passam para a página
       style={{ userSelect: "none", pointerEvents: "none" }}
