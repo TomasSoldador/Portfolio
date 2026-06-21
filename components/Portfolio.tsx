@@ -1,8 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Navbar } from "@/components/Navbar";
-import { StaticPortfolio } from "@/components/StaticPortfolio";
+import { SiteContent } from "@/components/SiteContent";
+import { StaticBackground } from "@/components/StaticBackground";
+import { ScrollDriver } from "@/components/ScrollDriver";
 import { useDeviceCapability } from "@/lib/hooks/useDeviceCapability";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 
@@ -12,25 +13,30 @@ const Experience = dynamic(() => import("@/components/three/Experience"), {
 });
 
 /**
- * Decide qual experiência mostrar:
- *  - Servidor / antes de detetar / dispositivo fraco / reduced-motion -> versão
- *    estática 2D (rápida, acessível, ótima para SEO).
- *  - Cliente capaz -> experiência 3D imersiva com scroll-driven storytelling.
+ * Compõe a página: uma única estrutura HTML (SiteContent) por cima de um fundo
+ * que pode ser a cena 3D imersiva ou um fundo estático.
+ *
+ *  - Servidor / antes de detetar / dispositivo fraco / reduced-motion
+ *    -> fundo estático + conteúdo (rápido, acessível, ótimo para SEO).
+ *  - Cliente capaz -> cena 3D imersiva como fundo, sincronizada com o scroll.
  */
 export function Portfolio() {
   const cap = useDeviceCapability();
   const reducedMotion = usePrefersReducedMotion();
 
-  const useStatic = !cap.ready || cap.isLowEnd || reducedMotion;
-
-  if (useStatic) {
-    return <StaticPortfolio />;
-  }
+  const use3D = cap.ready && !cap.isLowEnd && !reducedMotion;
 
   return (
     <>
-      <Navbar />
-      <Experience quality={cap.tier} dpr={cap.dpr} />
+      {use3D ? (
+        <>
+          <ScrollDriver />
+          <Experience quality={cap.tier} dpr={cap.dpr} />
+        </>
+      ) : (
+        <StaticBackground />
+      )}
+      <SiteContent mode={use3D ? "3d" : "static"} />
     </>
   );
 }

@@ -2,8 +2,9 @@
 
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Html, useScroll } from "@react-three/drei";
-import { getPhaseAt, typed } from "@/lib/screen";
+import { Html } from "@react-three/drei";
+import { getFrame, typed } from "@/lib/screen";
+import { scrollState } from "@/lib/r3fScroll";
 
 /**
  * Conteúdo do ecrã do monitor 3D: um "terminal" que se escreve a si mesmo
@@ -14,20 +15,19 @@ import { getPhaseAt, typed } from "@/lib/screen";
  * React a cada frame.
  */
 export function ScreenContent() {
-  const scroll = useScroll();
   const titleRef = useRef<HTMLSpanElement>(null);
   const bodyRef = useRef<HTMLPreElement>(null);
 
   useFrame((state) => {
-    const offset = scroll.offset;
-    const { phase, local } = getPhaseAt(offset);
+    const frame = getFrame(scrollState.phaseIndex);
 
-    if (titleRef.current && titleRef.current.textContent !== phase.title) {
-      titleRef.current.textContent = phase.title;
+    if (titleRef.current && titleRef.current.textContent !== frame.title) {
+      titleRef.current.textContent = frame.title;
     }
     if (bodyRef.current) {
       const cursorOn = Math.floor(state.clock.elapsedTime * 1.8) % 2 === 0;
-      bodyRef.current.textContent = typed(phase.body, local) + (cursorOn ? "█" : "");
+      bodyRef.current.textContent =
+        typed(frame.body, scrollState.phaseLocal) + (cursorOn ? "█" : "");
     }
   });
 
@@ -56,7 +56,7 @@ export function ScreenContent() {
             ref={titleRef}
             className="ml-2 truncate text-[10px] tracking-wide text-cyan-300/70"
           >
-            SYSTEM
+            ~/tomas — bash
           </span>
         </div>
 

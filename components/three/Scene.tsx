@@ -1,20 +1,17 @@
 "use client";
 
-import { Scroll, Stars } from "@react-three/drei";
+import { Stars } from "@react-three/drei";
 import { RetroComputer } from "./RetroComputer";
 import { FloatingTech } from "./FloatingTech";
 import { CameraRig } from "./CameraRig";
-import { ScrollSync } from "./ScrollSync";
-import { HtmlSections } from "./HtmlSections";
 
 /**
- * Conteúdo dentro do <ScrollControls>: a cena 3D + o conteúdo HTML que faz
- * scroll em sincronia (via <Scroll html>).
+ * Cena 3D pura. É renderizada num <Canvas> fixo em fundo de ecrã inteiro; a
+ * câmara, o PC e o ecrã animam-se a partir do scrollState (scroll da janela).
  */
 export function Scene({ quality }: { quality: "high" | "low" }) {
   return (
     <>
-      <ScrollSync />
       <CameraRig />
 
       {/* Iluminação (sem HDR externo, para carregar rápido e offline) */}
@@ -27,21 +24,16 @@ export function Scene({ quality }: { quality: "high" | "low" }) {
       <Stars
         radius={60}
         depth={40}
-        count={quality === "high" ? 2500 : 700}
+        count={quality === "high" ? 2200 : 700}
         factor={4}
         saturation={0}
         fade
-        speed={0.6}
+        speed={0.5}
       />
 
       {/* Peça central + tecnologias a flutuar */}
       <RetroComputer quality={quality} />
       {quality === "high" && <FloatingTech />}
-
-      {/* Conteúdo HTML sincronizado com o scroll */}
-      <Scroll html>
-        <HtmlSections />
-      </Scroll>
     </>
   );
 }
