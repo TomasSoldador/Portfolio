@@ -60,20 +60,18 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           ))}
         </ul>
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          {project.links.demo ? (
+        <div className="mt-5 flex flex-wrap items-center gap-4">
+          {project.links.demo && (
             <a
               href={project.links.demo}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
             >
-              Ver demo <ArrowUpRight size={16} />
+              Ver live <ArrowUpRight size={16} />
             </a>
-          ) : (
-            <span className="text-sm text-muted-foreground/60">Demo em breve</span>
           )}
-          {project.links.github ? (
+          {project.links.github && (
             <a
               href={project.links.github}
               target="_blank"
@@ -82,7 +80,13 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             >
               <Github size={16} /> Código
             </a>
-          ) : null}
+          )}
+          {/* Sem links públicos: projeto comercial/privado — mostrado uma vez, discreto */}
+          {!project.links.demo && !project.links.github && (
+            <span className="text-xs text-muted-foreground/70">
+              Projeto comercial — detalhes a pedido
+            </span>
+          )}
         </div>
       </div>
     </motion.article>

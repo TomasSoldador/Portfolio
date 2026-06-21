@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ImageIcon } from "lucide-react";
+import { Code2 } from "lucide-react";
 
 /**
  * Mostra o screenshot/GIF do projeto. Enquanto o ficheiro não existir em
- * /public, tenta carregar e cai graciosamente num placeholder com instruções.
+ * /public/projects, cai graciosamente num placeholder com marca (gradiente do
+ * acento + título) — apresentável para visitantes, sem instruções de dev.
+ *
+ * Para adicionar a imagem real: coloca o ficheiro indicado em `src` dentro de
+ * /public/projects/ (ver public/projects/README.txt).
  */
 export function ProjectImage({
   src,
@@ -21,17 +25,26 @@ export function ProjectImage({
   if (failed) {
     return (
       <div
-        className="relative flex h-full w-full flex-col items-center justify-center gap-2 text-center"
+        className="relative flex h-full w-full items-center justify-center overflow-hidden"
         style={{
-          background: `radial-gradient(120% 120% at 50% 0%, ${accent}22, transparent 60%), var(--card)`,
+          background: `radial-gradient(130% 130% at 30% 0%, ${accent}33, transparent 55%), linear-gradient(135deg, ${accent}14, transparent), var(--card)`,
         }}
       >
-        <ImageIcon className="opacity-60" style={{ color: accent }} size={28} />
-        <p className="px-4 text-xs text-muted-foreground">
-          Coloca o screenshot/GIF em
-          <br />
-          <code className="text-foreground/80">{src}</code>
-        </p>
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+            color: accent,
+          }}
+        />
+        <div className="relative flex flex-col items-center gap-2 px-4 text-center">
+          <Code2 size={26} style={{ color: accent }} />
+          <span className="font-mono text-sm font-medium" style={{ color: accent }}>
+            {alt}
+          </span>
+        </div>
       </div>
     );
   }
