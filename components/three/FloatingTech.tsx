@@ -39,8 +39,8 @@ export function FloatingTech() {
         >
           <Html center transform distanceFactor={6} occlude={false}>
             <div
-              className="select-none whitespace-nowrap rounded-full border border-cyan-400/20 bg-cyan-400/5 px-2 py-0.5 text-[11px] font-medium text-cyan-200/45 backdrop-blur-sm"
-              style={{ textShadow: "0 0 6px rgba(34,211,238,0.35)", pointerEvents: "none" }}
+              className="select-none whitespace-nowrap rounded-full border border-cyan-600/30 bg-cyan-500/10 px-2 py-0.5 text-[11px] font-medium text-cyan-700/60 backdrop-blur-sm dark:border-cyan-400/20 dark:bg-cyan-400/5 dark:text-cyan-200/45"
+              style={{ pointerEvents: "none" }}
             >
               {chip.label}
             </div>

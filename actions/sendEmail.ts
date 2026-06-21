@@ -25,29 +25,31 @@ export async function sendEmail(
   _prevState: ContactState,
   formData: FormData
 ): Promise<ContactState> {
-  const name = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
-  const message = String(formData.get("message") ?? "").trim();
-
-  // Honeypot anti-spam: campo escondido que humanos não preenchem.
-  if (String(formData.get("company") ?? "").length > 0) {
-    return { status: "success", message: "Mensagem enviada. Obrigado!" };
-  }
-
-  const errors: ContactState["errors"] = {};
-  if (name.length < 2) errors.name = "Diz-me o teu nome.";
-  if (!EMAIL_RE.test(email)) errors.email = "Email inválido.";
-  if (message.length < 10) errors.message = "Escreve uma mensagem com mais detalhe.";
-
-  if (Object.keys(errors).length > 0) {
-    return {
-      status: "error",
-      message: "Confere os campos assinalados.",
-      errors,
-    };
-  }
-
+  // Tudo dentro de try/catch: uma Server Action NUNCA deve propagar uma
+  // exceção (em produção isso resulta no ecrã "Application error").
   try {
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    // Honeypot anti-spam: campo escondido que humanos não preenchem.
+    if (String(formData.get("company") ?? "").length > 0) {
+      return { status: "success", message: "Mensagem enviada. Obrigado!" };
+    }
+
+    const errors: ContactState["errors"] = {};
+    if (name.length < 2) errors.name = "Diz-me o teu nome.";
+    if (!EMAIL_RE.test(email)) errors.email = "Email inválido.";
+    if (message.length < 10) errors.message = "Escreve uma mensagem com mais detalhe.";
+
+    if (Object.keys(errors).length > 0) {
+      return {
+        status: "error",
+        message: "Confere os campos assinalados.",
+        errors,
+      };
+    }
+
     // TODO: integrar envio real de email aqui.
     // Exemplo (Resend):
     //   await resend.emails.send({

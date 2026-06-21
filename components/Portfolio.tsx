@@ -6,6 +6,7 @@ import { StaticBackground } from "@/components/StaticBackground";
 import { ScrollDriver } from "@/components/ScrollDriver";
 import { useDeviceCapability } from "@/lib/hooks/useDeviceCapability";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
+import { useTheme } from "@/lib/hooks/useTheme";
 
 // A cena 3D só carrega no cliente (WebGL) e é lazy-loaded para o site abrir rápido.
 const Experience = dynamic(() => import("@/components/three/Experience"), {
@@ -23,6 +24,7 @@ const Experience = dynamic(() => import("@/components/three/Experience"), {
 export function Portfolio() {
   const cap = useDeviceCapability();
   const reducedMotion = usePrefersReducedMotion();
+  const theme = useTheme();
 
   const use3D = cap.ready && !cap.isLowEnd && !reducedMotion;
 
@@ -31,7 +33,7 @@ export function Portfolio() {
       {use3D ? (
         <>
           <ScrollDriver />
-          <Experience quality={cap.tier} dpr={cap.dpr} />
+          <Experience quality={cap.tier} dpr={cap.dpr} theme={theme} />
         </>
       ) : (
         <StaticBackground />

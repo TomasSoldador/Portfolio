@@ -117,23 +117,23 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "app-ginasios",
     title: "App de Ginásios",
-    tagline: "Reserva e acesso por telemóvel (IoT)",
+    tagline: "Acesso 24/7 de sócios (IoT)",
     description:
-      "Aplicação móvel de reserva e acesso. A app comunica por MQTT com um ESP32 ligado a uma fechadura magnética, abrindo a porta do ginásio diretamente a partir do telemóvel.",
+      "App para sócios reservarem aulas e entrarem no ginásio sem rececionista. Ao validar a entrada, a app comunica por MQTT com um ESP32 ligado a uma fechadura magnética e abre a porta a partir do telemóvel.",
     stack: ["React Native", "Node.js", "MQTT", "ESP32"],
     image: "/projects/app-ginasios.png",
-    accent: "#a78bfa",
+    accent: "#22d3ee",
     links: { demo: "", github: "" },
   },
   {
     id: "app-alojamentos",
     title: "App de Alojamentos",
-    tagline: "Acesso self check-in estilo Airbnb",
+    tagline: "Self check-in estilo Airbnb (IoT)",
     description:
-      "O mesmo sistema de reserva e acesso por telemóvel aplicado a alojamentos de curta duração. Check-in autónomo com abertura de porta remota e gestão de reservas.",
+      "Adaptação do mesmo sistema de acesso a alojamentos de curta duração: check-in 100% autónomo, em que o hóspede abre a porta pelo telemóvel apenas durante a estadia, com códigos de acesso temporários e gestão de reservas.",
     stack: ["React Native", "Node.js", "MQTT", "ESP32"],
     image: "/projects/app-alojamentos.png",
-    accent: "#f472b6",
+    accent: "#34d399",
     links: { demo: "", github: "" },
   },
   {
@@ -144,7 +144,7 @@ export const PROJECTS_DATA: Project[] = [
       "Modelo tipo Uber: utilizadores pedem seguranças em situações de risco e as empresas registam e gerem as suas equipas. Pagamentos via Stripe com divisão de receita por comissão.",
     stack: ["React Native", "Node.js", "PostgreSQL", "Stripe Connect"],
     image: "/projects/app-seguranca.png",
-    accent: "#fbbf24",
+    accent: "#22d3ee",
     links: { demo: "", github: "" },
   },
 ];
