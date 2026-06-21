@@ -68,7 +68,7 @@
   --card: #ffffff;
   --card-foreground: #0b1220;
 
-  --primary: #0ea5b7;
+  --primary: #0e7490;
   --primary-foreground: #ffffff;
 
   --secondary: #e8edf6;
@@ -103,7 +103,14 @@
 /*  Utilitários: ruído, glow neon, scanlines CRT, scrollbar                    */
 /* -------------------------------------------------------------------------- */
 @layer utilities {
+  /* Glow neon do CRT: forte sobre superfícies escuras (tema escuro ou o ecrã
+     do monitor, que é sempre escuro). No tema claro a página é clara, por isso
+     o halo neon prejudica a leitura -> usamos uma sombra subtil e nítida. */
   .text-glow {
+    text-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 30%, transparent);
+  }
+  .dark .text-glow,
+  .crt-screen .text-glow {
     text-shadow: 0 0 8px color-mix(in srgb, var(--neon) 70%, transparent),
       0 0 24px color-mix(in srgb, var(--neon) 40%, transparent);
   }
