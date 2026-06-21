@@ -8,12 +8,12 @@ import { ScreenContent } from "./ScreenContent";
 import { scrollState } from "@/lib/r3fScroll";
 
 /**
- * Monitor/computador retro construído proceduralmente (sem modelos externos,
- * para carregar rápido e funcionar offline). Componentes:
- *  - corpo do monitor (RoundedBox)
- *  - moldura + ecrã escuro com glow (o conteúdo é o <ScreenContent /> em Html)
- *  - pé/base
- *  - LED de power emissivo
+ * Monitor moderno construído proceduralmente (sem modelos externos, para
+ * carregar rápido e funcionar offline). Estética flat-panel atual:
+ *  - painel fino (RoundedBox raso) com bezels estreitos
+ *  - ecrã escuro quase edge-to-edge com glow (conteúdo: <ScreenContent /> em Html)
+ *  - webcam no topo + LED de power discreto
+ *  - pé slim: pescoço chato + base de perfil baixo
  *
  * O grupo inclina-se/roda ligeiramente conforme o scroll para dar profundidade,
  * com um leve "idle float" sobreposto.
@@ -42,46 +42,51 @@ export function RetroComputer({ quality }: { quality: "high" | "low" }) {
 
   return (
     <group ref={group} dispose={null}>
-      {/* Corpo do monitor */}
-      <RoundedBox args={[4, 3, 0.7]} radius={0.12} smoothness={segments} castShadow receiveShadow>
-        <meshStandardMaterial color="#1b2233" roughness={0.55} metalness={0.25} />
+      {/* Painel fino do monitor (chassis flat-panel) */}
+      <RoundedBox args={[4, 2.6, 0.14]} radius={0.06} smoothness={segments} castShadow receiveShadow>
+        <meshStandardMaterial color="#0e131d" roughness={0.4} metalness={0.55} />
       </RoundedBox>
 
-      {/* Moldura interior (bezel) */}
-      <mesh position={[0, 0.05, 0.33]}>
-        <boxGeometry args={[3.5, 2.4, 0.05]} />
-        <meshStandardMaterial color="#0a0e16" roughness={0.4} metalness={0.2} />
+      {/* Bezel estreito (moldura escura quase edge-to-edge) */}
+      <mesh position={[0, 0.02, 0.071]}>
+        <planeGeometry args={[3.86, 2.42]} />
+        <meshStandardMaterial color="#05080d" roughness={0.35} metalness={0.3} />
       </mesh>
 
-      {/* Vidro do ecrã com leve emissão (o glow do CRT) */}
-      <mesh position={[0, 0.05, 0.36]}>
-        <planeGeometry args={[3.3, 2.25]} />
+      {/* Vidro do ecrã com leve emissão (glow do painel) */}
+      <mesh position={[0, 0.02, 0.073]}>
+        <planeGeometry args={[3.74, 2.3]} />
         <meshStandardMaterial
           color="#02060a"
           emissive="#0a3a44"
           emissiveIntensity={0.6}
-          roughness={0.2}
+          roughness={0.15}
         />
+      </mesh>
+
+      {/* Webcam ao centro do topo */}
+      <mesh position={[0, 1.22, 0.075]}>
+        <sphereGeometry args={[0.03, 12, 12]} />
+        <meshStandardMaterial color="#04070c" roughness={0.1} metalness={0.6} />
       </mesh>
 
       {/* Conteúdo do ecrã (terminal que se escreve) */}
       <ScreenContent />
 
-      {/* LED de power */}
-      <mesh position={[1.55, -1.25, 0.36]}>
-        <sphereGeometry args={[0.045, 12, 12]} />
+      {/* LED de power discreto (canto inferior) */}
+      <mesh position={[1.7, -1.2, 0.075]}>
+        <sphereGeometry args={[0.03, 12, 12]} />
         <meshStandardMaterial color="#22d3ee" emissive="#22d3ee" emissiveIntensity={3} />
       </mesh>
 
-      {/* Pescoço do pé */}
-      <mesh position={[0, -1.8, -0.1]}>
-        <cylinderGeometry args={[0.18, 0.22, 0.6, 16]} />
-        <meshStandardMaterial color="#161c2b" roughness={0.6} metalness={0.3} />
-      </mesh>
+      {/* Pescoço slim do pé (placa chata) */}
+      <RoundedBox args={[0.5, 1, 0.1]} radius={0.04} smoothness={segments} position={[0, -1.75, -0.05]}>
+        <meshStandardMaterial color="#0c1019" roughness={0.45} metalness={0.6} />
+      </RoundedBox>
 
-      {/* Base */}
-      <RoundedBox args={[1.6, 0.18, 1]} radius={0.06} smoothness={segments} position={[0, -2.05, -0.1]}>
-        <meshStandardMaterial color="#161c2b" roughness={0.6} metalness={0.3} />
+      {/* Base de perfil baixo */}
+      <RoundedBox args={[1.9, 0.07, 1.05]} radius={0.035} smoothness={segments} position={[0, -2.22, -0.05]}>
+        <meshStandardMaterial color="#0c1019" roughness={0.45} metalness={0.6} />
       </RoundedBox>
     </group>
   );
